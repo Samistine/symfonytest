@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-12 jumbotron">
+            <h1> Store Time: {{ storeTime }} </h1>
+            <section>
+              <h2> Item Count: {{ itemCount }}</h2>
+            </section>
+          </div>
+        </div>
+
+
+        {% for product in products %}
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="product well">
+              <div class="product-name"><h3>{{ product.name }}</h3></div>
+              <hr/>
+              <div class="description">
+                  <span class="value text-primary">{{ product.description|raw }}</span>
+              </div>
+              <hr/>
+              <div class="text-info">
+                  <div class="product-sku">
+                      SKU:
+                      <span class="value">{{ product.sku }}</span>
+                  </div>
+                  <div class="price">
+                      Price:
+                      <span class="value">{{ product.price|number_format(2) }}</span>
+                  </div>
+                  <div class="availability">
+                      Availabilty:
+                      <span class="value">{{ product.availability }}</span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </body>
+</html>
